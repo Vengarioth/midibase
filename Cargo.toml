@@ -11,6 +11,7 @@ documentation = "https://docs.rs/midibase"
 keywords = ["midi", "obs", "cli"]
 categories = ["command-line-utilities"]
 readme = "readme.md"
+exclude = ["/resources"]
 
 [dependencies]
 midir = "0.6"
