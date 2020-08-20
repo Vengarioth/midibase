@@ -1,5 +1,7 @@
 # midibase
 
+![ferris using a midi pad](./resources/midibase-small.png)
+
 A command line application to send commands to [obs-websocket](https://obsproject.com/forum/resources/obs-websocket-remote-control-obs-studio-from-websockets.466/) based on midi input.
 
 ## installation
