@@ -1,0 +1,14 @@
+{
+    "commands": [
+        {
+            "command": "SetCurrentScene",
+            "button": 50,
+            "scene": "Programming"
+        },
+        {
+            "command": "SetCurrentScene",
+            "button": 51,
+            "scene": "Watching"
+        }
+    ]
+}

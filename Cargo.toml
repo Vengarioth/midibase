@@ -1,0 +1,23 @@
+[package]
+name = "midibase"
+version = "0.1.0"
+authors = ["Vengarioth | Andreas Fischer <opensource@deviru.de>"]
+edition = "2018"
+license = "MIT"
+description = "send commands to obs-websocket using midi hardware"
+homepage = "https://github.com/vengarioth/midibase"
+repository = "https://github.com/vengarioth/midibase"
+documentation = "https://docs.rs/midibase"
+keywords = ["midi", "obs", "cli"]
+categories = ["command-line-utilities"]
+readme = "readme.md"
+
+[dependencies]
+midir = "0.6"
+anyhow = "1.0"
+websocket = "0.26"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+crossbeam-channel = "0.4"
+structopt = "0.3"
