@@ -494,6 +494,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "crossbeam-channel",
+ "crossbeam-utils",
  "midir",
  "serde",
  "serde_derive",
