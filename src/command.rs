@@ -17,6 +17,9 @@ pub enum Command {
 
         #[structopt(name = "URL", short = "u", long = "url", default_value = "ws://localhost:4444", help = "the url to reach the obs-websocket plugin")]
         url: String,
+
+        #[structopt(name = "POLL", short = "p", long = "poll", default_value = "250", help = "the websocket polling interval in milliseconds")]
+        poll: u64
     },
 }
 

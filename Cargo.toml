@@ -1,6 +1,6 @@
 [package]
 name = "midibase"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Vengarioth | Andreas Fischer <opensource@deviru.de>"]
 edition = "2018"
 license = "MIT"
@@ -11,6 +11,7 @@ documentation = "https://docs.rs/midibase"
 keywords = ["midi", "obs", "cli"]
 categories = ["command-line-utilities"]
 readme = "readme.md"
+exclude = ["/resources"]
 
 [dependencies]
 midir = "0.6"
@@ -20,4 +21,5 @@ serde = "1.0"
 serde_derive = "1.0"
 serde_json = "1.0"
 crossbeam-channel = "0.4"
+crossbeam-utils = "0.7"
 structopt = "0.3"
