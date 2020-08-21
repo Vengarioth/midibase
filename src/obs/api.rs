@@ -36,3 +36,18 @@ impl SetCurrentSceneRequest {
         }
     }
 }
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum Response {
+    Error {
+        #[serde(rename = "message-id")]
+        message_id: String,
+
+        error: String,
+    },
+    Ok {
+        #[serde(rename = "message-id")]
+        message_id: String,
+    },
+}

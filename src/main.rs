@@ -35,7 +35,7 @@ fn main() -> Result<(), Error> {
             let _connection = midi.connect(&ports[device], "midibase input", move |_timestamp, message, _| {
                 let down = message[0] == 144;
                 let button = message[1];
-                println!("midi input {} {}", down, button);
+                // println!("midi input {} {}", down, button);
                 sender.send((down, button)).unwrap();
                 unparker.unpark();
             }, ());
@@ -59,8 +59,7 @@ fn main() -> Result<(), Error> {
                     }
                 }
 
-                if let Some(message) = obs.poll() {
-                    dbg!(message);
+                while let Some(_message) = obs.poll() {
                 }
             }
         }
