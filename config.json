@@ -12,8 +12,23 @@
         },
         {
             "command": "PlaySound",
-            "button": 49,
-            "file": "./resources/sounds/1.wav"
+            "button": 36,
+            "file": "./resources/test-sounds/1.wav"
+        },
+        {
+            "command": "PlaySound",
+            "button": 37,
+            "file": "./resources/test-sounds/2.wav"
+        },
+        {
+            "command": "PlaySound",
+            "button": 38,
+            "file": "./resources/test-sounds/3.wav"
+        },
+        {
+            "command": "PlaySound",
+            "button": 39,
+            "file": "./resources/test-sounds/4.wav"
         }
     ]
 }
