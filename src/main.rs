@@ -6,6 +6,7 @@ use crossbeam_channel::unbounded;
 use crossbeam_utils::sync::Parker;
 
 mod obs;
+mod soundboard;
 mod command;
 mod config;
 
@@ -47,15 +48,31 @@ fn main() -> Result<(), Error> {
                 
                 for (down, button) in receiver.try_recv() {
                     let pressed = button as usize;
+                    let mut button_found = false;
                     for command in config.commands.iter() {
                         match command {
                             config::Command::SetCurrentScene { button, scene } => {
-                                if down && *button == pressed {
-                                    println!("Switching scene to \"{}\"", scene);
-                                    obs.set_current_scene(scene)?;
+                                if *button == pressed {
+                                    button_found = true;
+                                    if down {
+                                        println!("Switching scene to \"{}\"", scene);
+                                        obs.set_current_scene(scene)?;
+                                        button_found = true;
+                                    }
+                                }
+                            },
+                            config::Command::PlaySound { button, file } => {
+                                if *button == pressed {
+                                    button_found = true;
+                                    if down {
+                                        soundboard::Soundboard::play_sound(file);
+                                    }
                                 }
                             },
                         }
+                    }
+                    if down && !button_found {
+                        println!("Command not assigned for midi button {}", pressed);
                     }
                 }
 
