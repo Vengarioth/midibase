@@ -2,7 +2,7 @@ use websocket::{ClientBuilder, Message, sync::Writer};
 use anyhow::Error;
 use std::net::TcpStream;
 use crossbeam_channel::unbounded;
-
+use crossbeam_utils::sync::Unparker;
 use super::api::*;
 
 pub struct ObsWebsocket {
@@ -12,7 +12,7 @@ pub struct ObsWebsocket {
 }
 
 impl ObsWebsocket {
-    pub fn new(url: &str) -> Result<Self, Error> {
+    pub fn new(url: &str, unparker: Unparker) -> Result<Self, Error> {
 
         let client = ClientBuilder::new(url)?.connect_insecure()?;
         let (mut reader, writer) = client.split()?;
@@ -21,6 +21,7 @@ impl ObsWebsocket {
         std::thread::spawn(move || loop {
             let message = reader.recv_message().unwrap();
             sender.send(message).unwrap();
+            unparker.unpark();
         });
 
         Ok(Self {

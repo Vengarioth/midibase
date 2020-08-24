@@ -23,7 +23,7 @@ fn main() -> Result<(), Error> {
             }
             Ok(())
         },
-        Command::Run { device, url, config, poll } => {
+        Command::Run { device, url, config, poll, verbose } => {
             let config = Configuration::load_from(&config)?;
 
             let midi = MidiInput::new("midibase")?;
@@ -32,19 +32,23 @@ fn main() -> Result<(), Error> {
             let parker = Parker::new();
             let unparker = parker.unparker().clone();
             let (sender, receiver) = unbounded();
+            let mut obs = ObsWebsocket::new(&url, unparker.clone())?;
+
             let _connection = midi.connect(&ports[device], "midibase input", move |_timestamp, message, _| {
                 let down = message[0] == 144;
                 let button = message[1];
-                // println!("midi input {} {}", down, button);
+
+                if verbose {
+                    println!("midi input {} {}", down, button);
+                }
+
                 sender.send((down, button)).unwrap();
                 unparker.unpark();
             }, ());
 
-            let mut obs = ObsWebsocket::new(&url)?;
-
             loop {
                 parker.park_timeout(std::time::Duration::from_millis(poll));
-                
+
                 for (down, button) in receiver.try_recv() {
                     let pressed = button as usize;
                     for command in config.commands.iter() {
@@ -59,7 +63,10 @@ fn main() -> Result<(), Error> {
                     }
                 }
 
-                while let Some(_message) = obs.poll() {
+                while let Some(message) = obs.poll() {
+                    if verbose {
+                        dbg!(message);
+                    }
                 }
             }
         }
