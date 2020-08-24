@@ -5,6 +5,11 @@ use anyhow::Error;
 use crossbeam_channel::unbounded;
 use crossbeam_utils::sync::Parker;
 
+//TODO: audio player stuff, move to file later
+use rodio::Source;
+use std::fs::File;
+use std::io::BufReader;
+
 mod obs;
 mod command;
 mod config;
@@ -53,6 +58,16 @@ fn main() -> Result<(), Error> {
                                 if down && *button == pressed {
                                     println!("Switching scene to \"{}\"", scene);
                                     obs.set_current_scene(scene)?;
+                                }
+                            },
+                            config::Command::PlaySound { button, file } => {
+                                if down && *button == pressed {
+                                    println!("Playing Sound \"{}\"", file);
+                                    let device = rodio::default_output_device().unwrap();
+                                    
+                                    let file = File::open(file).unwrap();
+                                    let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
+                                    rodio::play_raw(&device, source.convert_samples());
                                 }
                             },
                         }

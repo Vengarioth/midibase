@@ -9,6 +9,11 @@
             "command": "SetCurrentScene",
             "button": 51,
             "scene": "Watching"
+        },
+        {
+            "command": "PlaySound",
+            "button": 49,
+            "file": "./resources/sounds/1.wav"
         }
     ]
 }

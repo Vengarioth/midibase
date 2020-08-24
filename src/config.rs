@@ -8,6 +8,10 @@ pub enum Command {
     SetCurrentScene {
         button: usize,
         scene: String,
+    },
+    PlaySound {
+        button: usize,
+        file: String,
     }
 }
 
