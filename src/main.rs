@@ -72,7 +72,7 @@ fn main() -> Result<(), Error> {
                         }
                     }
                     if down && !button_found {
-                        println!("Command not found for midi button {}", pressed);
+                        println!("Command not assigned for midi button {}", pressed);
                     }
                 }
 
