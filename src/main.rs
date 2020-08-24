@@ -52,6 +52,7 @@ fn main() -> Result<(), Error> {
                 
                 for (down, button) in receiver.try_recv() {
                     let pressed = button as usize;
+                    println!("{}", pressed);
                     for command in config.commands.iter() {
                         match command {
                             config::Command::SetCurrentScene { button, scene } => {
