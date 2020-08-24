@@ -1,6 +1,6 @@
 [package]
 name = "midibase"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Vengarioth | Andreas Fischer <opensource@deviru.de>"]
 edition = "2018"
 license = "MIT"
