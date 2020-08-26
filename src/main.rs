@@ -4,6 +4,7 @@ use midir::{
 use anyhow::Error;
 use crossbeam_channel::unbounded;
 use crossbeam_utils::sync::Parker;
+use std::env;
 
 mod obs;
 mod soundboard;
@@ -25,7 +26,7 @@ fn main() -> Result<(), Error> {
             }
             Ok(())
         },
-        Command::Run { device, url, config, poll } => {
+        Command::Run { device, url, config, poll, sinks } => {
             let config = Configuration::load_from(&config)?;
 
             let midi = MidiInput::new("midibase")?;
@@ -43,7 +44,7 @@ fn main() -> Result<(), Error> {
             }, ());
 
             let mut obs = ObsWebsocket::new(&url)?;
-            let soundboard = Soundboard::new();
+            let soundboard = Soundboard::new(sinks);
 
             loop {
                 parker.park_timeout(std::time::Duration::from_millis(poll));

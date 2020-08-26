@@ -19,7 +19,10 @@ pub enum Command {
         url: String,
 
         #[structopt(name = "POLL", short = "p", long = "poll", default_value = "250", help = "the websocket polling interval in milliseconds")]
-        poll: u64
+        poll: u64,
+
+        #[structopt(name = "SINKS", short = "s", long = "sinks", default_value = "5", help = "The number of Roido::Sink in the audio pool, larger values let you play more sounds in parallel")]
+        sinks: u64
     },
 }
 

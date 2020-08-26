@@ -8,14 +8,12 @@ pub struct Soundboard {
 }
 
 impl Soundboard {
-    pub fn new() -> Soundboard{
+    pub fn new(sink_count: u64) -> Soundboard{
         let device = rodio::default_output_device().unwrap();
         let mut sinks: Vec<Sink> = Vec::new();
-        sinks.push(Sink::new(&device));
-        sinks.push(Sink::new(&device));
-        sinks.push(Sink::new(&device));
-        sinks.push(Sink::new(&device));
-        sinks.push(Sink::new(&device));
+        for _ in 1..(sink_count+1){
+            sinks.push(Sink::new(&device));
+        }
         Self {
             sink_pool: sinks
         }
