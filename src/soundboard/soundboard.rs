@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 use rodio::Sink;
 use std::fs::File;
 use std::io::BufReader;
@@ -41,22 +40,5 @@ impl Soundboard {
                 for more information on the \"--sinks\" option"
             );
         }
-=======
-use rodio::Source;
-use std::fs::File;
-use std::io::BufReader;
-
-
-pub struct Soundboard {}
-
-impl Soundboard {
-    pub fn play_sound(file : &str){
-        println!("Playing Sound \"{}\"", file);
-        let device = rodio::default_output_device().unwrap();
-        
-        let file = File::open(file).unwrap();
-        let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
-        rodio::play_raw(&device, source.convert_samples());
->>>>>>> d41269db2af93c4f508f96674a4d8e9d1698f02e
     }
 }
