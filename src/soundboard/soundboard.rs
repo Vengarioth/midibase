@@ -17,7 +17,6 @@ impl Soundboard {
     }
     pub fn play_sound(&self, file: &str, volume: &f32) {
         println!("Playing Sound \"{}\"", file);
-        let mut num = 0;
         let mut found_sink = false;
         for sink in &self.sink_pool {
             if sink.empty() {
@@ -30,7 +29,6 @@ impl Soundboard {
                 found_sink = true;
                 break;
             }
-            num += 1;
         }
         if !found_sink {
             println!("`Too many sounds are playing at once,\
