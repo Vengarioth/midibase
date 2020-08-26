@@ -11,6 +11,7 @@ mod command;
 mod config;
 
 use obs::*;
+use soundboard::*;
 use command::*;
 use config::Configuration;
 
@@ -24,7 +25,7 @@ fn main() -> Result<(), Error> {
             }
             Ok(())
         },
-        Command::Run { device, url, config, poll } => {
+        Command::Run { device, url, config, poll, sinks } => {
             let config = Configuration::load_from(&config)?;
 
             let midi = MidiInput::new("midibase")?;
@@ -42,6 +43,7 @@ fn main() -> Result<(), Error> {
             }, ());
 
             let mut obs = ObsWebsocket::new(&url)?;
+            let soundboard = Soundboard::new(sinks);
 
             loop {
                 parker.park_timeout(std::time::Duration::from_millis(poll));
@@ -61,11 +63,11 @@ fn main() -> Result<(), Error> {
                                     }
                                 }
                             },
-                            config::Command::PlaySound { button, file } => {
+                            config::Command::PlaySound { button, file, volume } => {
                                 if *button == pressed {
                                     button_found = true;
                                     if down {
-                                        soundboard::Soundboard::play_sound(file);
+                                        soundboard.play_sound(file, volume);
                                     }
                                 }
                             },
