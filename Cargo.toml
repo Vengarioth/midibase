@@ -1,7 +1,7 @@
 [package]
 name = "midibase"
-version = "0.2.0"
-authors = ["Vengarioth | Andreas Fischer <opensource@deviru.de>"]
+version = "0.3.0"
+authors = ["Vengarioth | Andreas Fischer <opensource@deviru.de>", "Snowdrama | John Close <SnowdramaGames@gmail.com>"]
 edition = "2018"
 license = "MIT"
 description = "send commands to obs-websocket using midi hardware"

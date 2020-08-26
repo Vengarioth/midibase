@@ -32,8 +32,12 @@ Create a file called `config.json` and add your commands
         {
             "command": "PlaySound",
             "button": 36,
+<<<<<<< HEAD
             "file": "./resources/test-sounds/1.wav",
             "volume": 1.0
+=======
+            "file": "./resources/test-sounds/1.wav"
+>>>>>>> d41269db2af93c4f508f96674a4d8e9d1698f02e
         }
     ]
 }
