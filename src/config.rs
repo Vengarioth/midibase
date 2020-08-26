@@ -12,6 +12,7 @@ pub enum Command {
     PlaySound {
         button: usize,
         file: String,
+        volume: f32,
     }
 }
 
