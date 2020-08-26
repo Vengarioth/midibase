@@ -4,7 +4,6 @@ use midir::{
 use anyhow::Error;
 use crossbeam_channel::unbounded;
 use crossbeam_utils::sync::Parker;
-use std::env;
 
 mod obs;
 mod soundboard;
