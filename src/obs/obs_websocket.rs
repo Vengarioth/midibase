@@ -34,12 +34,33 @@ impl ObsWebsocket {
         let message_id = self.next_message_id;
         self.next_message_id += 1;
 
-        let request = SetCurrentSceneRequest::new(scene_name.into(), message_id);
+        let request = scene::set_current_scene_request::SetCurrentSceneRequest::new(scene_name.into(), message_id);
         let serialized = serde_json::to_string(&request)?;
         self.writer.send_message(&Message::text(serialized))?;
 
         Ok(())
     }
+
+    pub fn toggle_audio_mute(&mut self, source_name: impl Into<String>) -> Result<(), Error> {
+        let message_id = self.next_message_id;
+        self.next_message_id += 1;
+
+        let request = audio::toggle_audio_mute::ToggleAudioMute::new(message_id, source_name.into());
+        let serialized = serde_json::to_string(&request)?;
+        self.writer.send_message(&Message::text(serialized))?;
+        Ok(())
+    }
+
+    pub fn set_audio_mute(&mut self, source_name: impl Into<String>, mute: bool) -> Result<(), Error> {
+        let message_id = self.next_message_id;
+        self.next_message_id += 1;
+
+        let request = audio::set_audio_mute::SetAudioMute::new(message_id, source_name.into(), mute);
+        let serialized = serde_json::to_string(&request)?;
+        self.writer.send_message(&Message::text(serialized))?;
+        Ok(())
+    }
+
 
     pub fn poll(&self) -> Option<String> {
         if let Ok(message) = self.receiver.try_recv() {
@@ -49,9 +70,11 @@ impl ObsWebsocket {
                     if let Ok(response) = serde_json::from_str::<super::Response>(&text) {
                         if let super::Response::Error{ error, .. } = response {
                             println!("Error: {}", error);
-                        } else {
-                            println!("Ok");
                         }
+                        // else {
+                        //     // TODO: discuss diabling the OK, feedback should only be needed if there's an issue
+                        //     println!("Ok");
+                        // }
                     }
 
                     Some(text)

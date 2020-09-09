@@ -13,6 +13,15 @@ pub enum Command {
         button: usize,
         file: String,
         volume: f32,
+    },
+    ToggleAudioMute {
+        button: usize,
+        audio_source: String,
+    },
+    SetAudioMute {
+        button: usize,
+        audio_source: String,
+        mute: bool
     }
 }
 

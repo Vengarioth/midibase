@@ -71,6 +71,26 @@ fn main() -> Result<(), Error> {
                                     }
                                 }
                             },
+                            config::Command::ToggleAudioMute { button, audio_source } => {
+                                if *button == pressed {
+                                    button_found = true;
+                                    if down {
+                                        println!("Toggling Audio Mute: \"{}\"", audio_source);
+                                        obs.toggle_audio_mute(audio_source)?;
+                                        button_found = true;
+                                    }
+                                }
+                            },
+                            config::Command::SetAudioMute { button, audio_source, mute } => {
+                                if *button == pressed {
+                                    button_found = true;
+                                    if down {
+                                        println!("Setting Audio Mute: \"{}\" to \"{}\" ", audio_source, mute);
+                                        obs.set_audio_mute(audio_source, *mute)?;
+                                        button_found = true;
+                                    }
+                                }
+                            }
                         }
                     }
                     if down && !button_found {
