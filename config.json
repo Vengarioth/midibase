@@ -2,44 +2,8 @@
     "commands": [
         {
             "command": "SetCurrentScene",
-            "button": 48,
-            "scene": "Start"
-        },
-
-
-
-
-        {
-            "command": "SetCurrentScene",
-            "button": 49,
-            "scene": "End"
-        },
-        {
-            "command": "PlaySound",
-            "button": 49,
-            "file": "./sounds/windows-xp-shutdown.mp3",
-            "volume": 1.0
-        },
-        {
-            "command": "SetAudioMute",
-            "button": 49,
-            "audio_source": "Mic/Aux 3",
-            "mute": true
-        },
-
-
-
-
-        {
-            "command": "SetCurrentScene",
             "button": 50,
-            "scene": "Scene"
-        },
-        {
-            "command": "PlaySound",
-            "button": 50,
-            "file": "./sounds/windows-xp-startup.mp3",
-            "volume": 1.0
+            "scene": "Game"
         },
         {
             "command": "SetAudioMute",
@@ -47,19 +11,10 @@
             "audio_source": "Mic/Aux 3",
             "mute": false
         },
-
-
-
         {
             "command": "SetCurrentScene",
             "button": 51,
-            "scene": "SceneWithBRB"
-        },
-        {
-            "command": "PlaySound",
-            "button": 51,
-            "file": "./sounds/windows-xp-shutdown.mp3",
-            "volume": 1.0
+            "scene": "Queue"
         },
         {
             "command": "SetAudioMute",
@@ -67,89 +22,10 @@
             "audio_source": "Mic/Aux 3",
             "mute": true
         },
-
-
-
-
-
-
-        {
-            "command": "PlaySound",
-            "button": 37,
-            "file": "./sounds/windows_error.mp3",
-            "volume": 1.0
-        },
-        {
-            "command": "PlaySound",
-            "button": 39,
-            "file": "./sounds/windows-xp-startup.mp3",
-            "volume": 1.0
-        },
-        {
-            "command": "PlaySound",
-            "button": 41,
-            "file": "./sounds/windows-xp-shutdown.mp3",
-            "volume": 1.0
-        },
-        {
-            "command": "PlaySound",
-            "button": 43,
-            "file": "./sounds/deja-vu.mp3",
-            "volume": 0.5
-        },
-        {
-            "command": "PlaySound",
-            "button": 45,
-            "file": "./sounds/gas-gas-gas.mp3",
-            "volume": 0.5
-        },
-        {
-            "command": "PlaySound",
-            "button": 47,
-            "file": "./sounds/they-ask-you-how-you-are-and-you-just-have-to-say-that-youre-fine.mp3",
-            "volume": 2.5
-        },
-        
-
-
-
-
-
         {
             "command": "PlaySound",
             "button": 36,
-            "file": "./sounds/wow.mp3",
-            "volume": 1.0
-        },
-        {
-            "command": "PlaySound",
-            "button": 38,
-            "file": "./sounds/honk-sound.mp3",
-            "volume": 1.5
-        },
-        {
-            "command": "PlaySound",
-            "button": 40,
-            "file": "./sounds/steve-old-hurt-sound_XKZxUk4.mp3",
-            "volume": 1.0
-        },
-        {
-            "command": "PlaySound",
-            "button": 42,
-            "file": "./sounds/nut_meme.mp3",
-            "volume": 3.0
-        },
-        {
-            "command": "PlaySound",
-            "button": 44,
-            "file": "./sounds/oh-no-no-no-no-laugh.mp3",
-            "volume": 1.0
-        },
-        {
-            "command": "PlaySound",
-            "button": 46,
-            "file": "./sounds/NaniBattle.wav",
-            "volume": 1.5
+            "file": "./resources/test-sounds/1.wav"
         }
     ]
 }
