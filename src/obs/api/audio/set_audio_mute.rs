@@ -1,5 +1,8 @@
 use serde_derive::*;
 
+// Sets the mute of an audio source to either muted or unmuted using "SetMute" in OBS-Websocket
+// https://github.com/Palakis/obs-websocket/blob/4.x-current/docs/generated/protocol.md#setmute
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SetAudioMute {
     #[serde(rename = "request-type")]

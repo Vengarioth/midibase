@@ -1,5 +1,8 @@
 use serde_derive::*;
 
+// Toggles the mute of an audio source to either muted or unmuted using "ToggleMute" in OBS-Websocket
+// https://github.com/Palakis/obs-websocket/blob/4.x-current/docs/generated/protocol.md#togglemute
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ToggleAudioMute {
     #[serde(rename = "request-type")]
