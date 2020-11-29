@@ -51,43 +51,41 @@ fn main() -> Result<(), Error> {
                 for (down, button) in receiver.try_recv() {
                     let pressed = button as usize;
                     let mut button_found = false;
-                    for command in config.commands.iter() {
-                        match command {
-                            config::Command::SetCurrentScene { button, scene } => {
-                                if *button == pressed {
-                                    button_found = true;
-                                    if down {
-                                        println!("Switching scene to \"{}\"", scene);
-                                        obs.set_current_scene(scene)?;
-                                        button_found = true;
-                                    }
-                                }
-                            },
-                            config::Command::PlaySound { button, file, volume } => {
-                                if *button == pressed {
-                                    button_found = true;
-                                    if down {
-                                        soundboard.play_sound(file, volume);
-                                    }
-                                }
-                            },
-                            config::Command::ToggleAudioMute { button, audio_source } => {
-                                if *button == pressed {
-                                    button_found = true;
-                                    if down {
-                                        println!("Toggling Audio Mute: \"{}\"", audio_source);
-                                        obs.toggle_audio_mute(audio_source)?;
-                                        button_found = true;
-                                    }
-                                }
-                            },
-                            config::Command::SetAudioMute { button, audio_source, mute } => {
-                                if *button == pressed {
-                                    button_found = true;
-                                    if down {
-                                        println!("Setting Audio Mute: \"{}\" to \"{}\" ", audio_source, mute);
-                                        obs.set_audio_mute(audio_source, *mute)?;
-                                        button_found = true;
+                    for event in config.midibase_events.iter() {
+                        match event {
+                            config::MidibaseEvent { button, on_down, commands } => {
+                                if *button == pressed && *on_down == down {
+                                    for command in commands.iter() {
+                                        match command {
+                                            config::Command::SetCurrentScene { scene } => {
+                                                obs.set_current_scene(scene)?;
+                                                button_found = true;
+                                            },
+                                            config::Command::PlaySound { file, volume } => {
+                                                soundboard.play_sound(file, volume);
+                                                button_found = true;
+                                            },
+                                            config::Command::ToggleAudioMute { audio_source } => {
+                                                obs.toggle_audio_mute(audio_source)?;
+                                                button_found = true;
+                                            },
+                                            config::Command::SetAudioMute { audio_source, mute } => {
+                                                obs.set_audio_mute(audio_source, *mute)?;
+                                                button_found = true;
+                                            },
+                                            config::Command::StartStream => {
+                                                obs.start_stream()?;
+                                                button_found = true;
+                                            },
+                                            config::Command::StopStream => {
+                                                obs.stop_stream()?;
+                                                button_found = true;
+                                            },
+                                            config::Command::SetSceneItemProperties { scene_name, item, options } => {
+                                                obs.set_scene_item_properties(scene_name, item, options)?;
+                                                button_found = true;
+                                            },
+                                        }
                                     }
                                 }
                             }

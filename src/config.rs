@@ -2,32 +2,49 @@ use serde_derive::*;
 use anyhow::Error;
 use std::path::Path;
 
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct MidibaseEvent {
+    pub button: usize,
+    pub on_down: bool,
+    pub commands: Vec<Command>,
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(tag = "command")]
 pub enum Command {
     SetCurrentScene {
-        button: usize,
         scene: String,
     },
     PlaySound {
-        button: usize,
         file: String,
         volume: f32,
     },
     ToggleAudioMute {
-        button: usize,
         audio_source: String,
     },
     SetAudioMute {
-        button: usize,
         audio_source: String,
         mute: bool
+    },
+    StartStream,
+    StopStream,
+    SetSceneItemProperties{
+        scene_name: String,
+        item: String,
+        options: Vec<SceneItemOption>
     }
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct SceneItemOption{
+    pub option_name: String,
+    pub option_value: String
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Configuration {
-    pub commands: Vec<Command>
+    pub midibase_events: Vec<MidibaseEvent>
 }
 
 impl Configuration {

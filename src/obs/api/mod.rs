@@ -2,6 +2,7 @@ use serde_derive::*;
 
 pub mod audio;
 pub mod scene;
+pub mod stream;
 
 // #[derive(Debug, Serialize, Deserialize)]
 // pub struct GetVersionRequest {

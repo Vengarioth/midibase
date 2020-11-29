@@ -1,31 +1,205 @@
 {
-    "commands": [
+    "midibase_events": [
         {
-            "command": "SetCurrentScene",
             "button": 50,
-            "scene": "Game"
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "SetCurrentScene",
+                    "scene": "Scene"
+                },
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/windows-xp-startup.mp3",
+                    "volume": 1.0
+                },
+                {
+                    "command": "SetAudioMute",
+                    "audio_source": "Mic/Aux 3",
+                    "mute": false
+                }
+            ]
         },
         {
-            "command": "SetAudioMute",
-            "button": 50,
-            "audio_source": "Mic/Aux 3",
-            "mute": false
-        },
-        {
-            "command": "SetCurrentScene",
             "button": 51,
-            "scene": "Queue"
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "SetCurrentScene",
+                    "scene": "SceneWithBRB"
+                },
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/windows-xp-shutdown.mp3",
+                    "volume": 1.0
+                },
+                {
+                    "command": "SetAudioMute",
+                    "audio_source": "Mic/Aux 3",
+                    "mute": true
+                }
+            ]
         },
         {
-            "command": "SetAudioMute",
-            "button": 51,
-            "audio_source": "Mic/Aux 3",
-            "mute": true
+            "button": 46,
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "SetSceneItemProperties",
+                    "scene_name": "Scene",
+                    "item": "HitTheDesk",
+                    "options": [
+                        {
+                            "option_name": "visible",
+                            "option_value": "true"
+                        }
+                    ]
+                },
+                {
+                    "command": "SetCurrentScene",
+                    "scene": "Scene"
+                },
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/wow.mp3",
+                    "volume": 1.0
+                }
+            ]
         },
         {
-            "command": "PlaySound",
+            "button": 46,
+            "on_down": false,
+            "commands": [
+                {
+                    "command": "SetSceneItemProperties",
+                    "scene_name": "Scene",
+                    "item": "HitTheDesk",
+                    "options": [
+                        {
+                            "option_name": "visible",
+                            "option_value": "false"
+                        }
+                    ]
+                },
+                {
+                    "command": "SetCurrentScene",
+                    "scene": "Scene"
+                }
+            ]
+        },
+        {
+            "button": 48,
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "SetCurrentScene",
+                    "scene": "Start"
+                },
+                {
+                    "command": "SetAudioMute",
+                    "audio_source": "Mic/Aux 3",
+                    "mute": true
+                }
+            ]
+        },
+        {
+            "button": 49,
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "SetCurrentScene",
+                    "scene": "End"
+                },
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/windows-xp-shutdown.mp3",
+                    "volume": 1.0
+                },
+                {
+                    "command": "SetAudioMute",
+                    "audio_source": "Mic/Aux 3",
+                    "mute": true
+                }
+            ]
+        },
+
+        
+        {
             "button": 36,
-            "file": "./resources/test-sounds/1.wav"
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/honk.mp3",
+                    "volume": 1.0
+                }
+            ]
+        },
+        {
+            "button": 37,
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/deja-vu.mp3",
+                    "volume": 1.0
+                }
+            ]
+        },
+        {
+            "button": 38,
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/windows-xp-error.mp3",
+                    "volume": 1.0
+                }
+            ]
+        },
+        {
+            "button": 39,
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/gas-gas-gas.mp3",
+                    "volume": 1.0
+                }
+            ]
+        },
+        {
+            "button": 40,
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/wow.mp3",
+                    "volume": 1.0
+                }
+            ]
+        },
+        {
+            "button": 41,
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/they-ask-you-how-you-are-and-you-just-have-to-say-that-youre-fine.mp3",
+                    "volume": 1.0
+                }
+            ]
+        },
+        {
+            "button": 42,
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/nut.mp3",
+                    "volume": 1.0
+                }
+            ]
         }
     ]
 }

@@ -17,39 +17,38 @@ cargo install midibase
 Create a file called `config.json` and add your commands
 
 ```json{
-    "commands": [
+    "midibase_events": [
         {
-            "command": "SetCurrentScene",
             "button": 50,
-            "scene": "Game"
-        },
-        {
-            "command": "SetAudioMute",
-            "button": 50,
-            "audio_source": "Mic/Aux 3",
-            "mute": false
-        },
-        {
-            "command": "SetCurrentScene",
-            "button": 51,
-            "scene": "Queue"
-        },
-        {
-            "command": "SetAudioMute",
-            "button": 51,
-            "audio_source": "Mic/Aux 3",
-            "mute": true
-        },
-        {
-            "command": "PlaySound",
-            "button": 36,
-            "file": "./resources/test-sounds/1.wav"
-        },
-        {
-            "command": "ToggleAudioMute",
-            "button": 37,
-            "audio_source":"Mic/Aux"
-        },
+            "on_down": true,
+            "commands": [
+                {
+                    "command": "SetCurrentScene",
+                    "scene": "Scene"
+                },
+                {
+                    "command": "PlaySound",
+                    "file": "./sounds/1.wav",
+                    "volume": 1.0
+                },
+                {
+                    "command": "SetAudioMute",
+                    "audio_source": "Mic/Aux 3",
+                    "mute": false
+                },
+                {
+                    "command": "SetSceneItemProperties",
+                    "scene_name": "Scene",
+                    "item": "BRBPhoto",
+                    "options": [
+                        {
+                            "option_name": "visible",
+                            "option_value": "true"
+                        }
+                    ]
+                }
+            ]
+        }
     ]
 }
 ```
