@@ -68,6 +68,10 @@ To remove midibase just run `cargo uninstall midibase`
 
 [MIT](LICENSE)
 
+## known issues
+
+The application doesn't run in dev mode. Running `cargo run` will error, but `cargo run --release -- run` will work.
+
 ## resources
 
 [OBS-Websocket OBS Plugin Page](https://obsproject.com/forum/resources/obs-websocket-remote-control-obs-studio-from-websockets.466/)

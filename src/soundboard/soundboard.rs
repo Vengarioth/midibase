@@ -1,43 +1,22 @@
-use rodio::Sink;
-use std::fs::File;
-use std::io::BufReader;
-
+use kira::{AudioError, Value, instance::*, manager::*, sound::*};
 pub struct Soundboard {
-    sink_pool: Vec<Sink>,
+    audio_manager: AudioManager,
 }
 
 impl Soundboard {
-    pub fn new(sink_count: u64) -> Soundboard {
-        let device = rodio::default_output_device().unwrap();
-        let mut sinks: Vec<Sink> = Vec::new();
-        for _ in 1..(sink_count + 1) {
-            sinks.push(Sink::new(&device));
-        }
-        Self { sink_pool: sinks }
+    pub fn new() -> Result<Soundboard, AudioError> {
+        let audio_manager = AudioManager::<()>::new(AudioManagerSettings::default())?;
+        Ok(Self {
+            audio_manager: audio_manager,
+        })
     }
-    pub fn play_sound(&self, file : &str, volume : &f32){
-        println!("Playing Sound \"{}\"", file);
-        let mut found_sink = false;
-        for sink in &self.sink_pool {
-            if sink.empty() {
-                let file = File::open(file).unwrap();
-                let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
-                // rodio::play_raw(&device, source.convert_samples());
-                sink.set_volume(*volume);
-                sink.append(source);
-                sink.play();
-                found_sink = true;
-                break;
-            }
-        }
-        if !found_sink {
-            println!("`Too many sounds are playing at once,\
-                No sound was played, please wait for sounds to end,\
-                or increase the number of audio pools by using the\
-                \"--sinks\" option at startup. See \"midibase run --help\"\
-                for more information on the \"--sinks\" option"
-            );
-        }
+    pub fn play_sound(&mut self, file : &str, volume : f64) -> Result<(), AudioError> {
+        let sound_id = self.audio_manager.add_sound(Sound::from_file(file, SoundSettings::default())?)?;
+        self.audio_manager.play_sound(sound_id, InstanceSettings{
+            volume: Value::from(volume),
+            ..InstanceSettings::default()
+        })?;
+        Ok(())
     }
 }
 

@@ -71,10 +71,6 @@ impl ObsWebsocket {
                         if let super::Response::Error{ error, .. } = response {
                             println!("Error: {}", error);
                         }
-                        // else {
-                        //     // TODO: discuss diabling the OK, feedback should only be needed if there's an issue
-                        //     println!("Ok");
-                        // }
                     }
 
                     Some(text)

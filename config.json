@@ -6,26 +6,15 @@
             "scene": "Game"
         },
         {
-            "command": "SetAudioMute",
-            "button": 50,
-            "audio_source": "Mic/Aux 3",
-            "mute": false
-        },
-        {
             "command": "SetCurrentScene",
             "button": 51,
             "scene": "Queue"
         },
         {
-            "command": "SetAudioMute",
-            "button": 51,
-            "audio_source": "Mic/Aux 3",
-            "mute": true
-        },
-        {
             "command": "PlaySound",
             "button": 36,
-            "file": "./resources/test-sounds/1.wav"
+            "file": "./sounds/wow.mp3",
+            "volume": 1.0
         }
     ]
 }
