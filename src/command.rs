@@ -20,14 +20,12 @@ pub enum Command {
 
         #[structopt(name = "POLL", short = "p", long = "poll", default_value = "250", help = "the websocket polling interval in milliseconds")]
         poll: u64,
-
-        #[structopt(name = "SINKS", short = "s", long = "sinks", default_value = "10", help = "The number of sounds that can play at the same time, larger values let you play more sounds in parallel")]
-        sinks: u64
     },
 }
 
 impl Command {
     pub fn parse() -> Self {
+        println!("Parsing");
         Self::from_args()
     }
 }

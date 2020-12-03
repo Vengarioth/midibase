@@ -3,36 +3,29 @@
         {
             "command": "SetCurrentScene",
             "button": 50,
-            "scene": "Programming"
+            "scene": "Game"
+        },
+        {
+            "command": "SetAudioMute",
+            "button": 50,
+            "audio_source": "Mic/Aux 3",
+            "mute": false
         },
         {
             "command": "SetCurrentScene",
             "button": 51,
-            "scene": "Watching"
+            "scene": "Queue"
+        },
+        {
+            "command": "SetAudioMute",
+            "button": 51,
+            "audio_source": "Mic/Aux 3",
+            "mute": true
         },
         {
             "command": "PlaySound",
             "button": 36,
-            "file": "./resources/test-sounds/1.wav",
-            "volume": 2.0
-        },
-        {
-            "command": "PlaySound",
-            "button": 37,
-            "file": "./resources/test-sounds/2.wav",
-            "volume": 1.0
-        },
-        {
-            "command": "PlaySound",
-            "button": 38,
-            "file": "./resources/test-sounds/3.wav",
-            "volume": 0.5
-        },
-        {
-            "command": "PlaySound",
-            "button": 39,
-            "file": "./resources/test-sounds/4.wav",
-            "volume": 0.25
+            "file": "./resources/test-sounds/1.wav"
         }
     ]
 }
