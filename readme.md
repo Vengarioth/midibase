@@ -53,11 +53,13 @@ Create a file called `config.json` and add your commands
     ]
 }
 ```
-
 Then start obs with the obs-websocket plugin installed and run midibase
-
 ```
 midibase run
+```
+if you're running the project from source, use 
+```
+cargo run run 
 ```
 
 ## uninstall
@@ -67,10 +69,6 @@ To remove midibase just run `cargo uninstall midibase`
 ## license
 
 [MIT](LICENSE)
-
-## known issues
-
-The application doesn't run in dev mode. Running `cargo run` will error, but `cargo run --release -- run` will work.
 
 ## resources
 
